@@ -1,4 +1,4 @@
-package ru.solar.geometry;
+package ru.solar.triangleTest;
 
 public class Triangle {
     public static void printPerimeterTriangle(int a, int b, int c) {

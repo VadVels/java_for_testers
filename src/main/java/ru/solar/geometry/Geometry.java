@@ -1,5 +1,7 @@
 package ru.solar.geometry;
 
+import ru.solar.triangleTest.Triangle;
+
 public class Geometry {
     public static void main(String[] args) {
         Triangle.printPerimeterTriangle(3,4,5);

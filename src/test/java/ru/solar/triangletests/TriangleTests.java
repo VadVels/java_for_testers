@@ -2,7 +2,7 @@ package ru.solar.triangletests;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.solar.geometry.Triangle;
+import ru.solar.triangleTest.Triangle;
 
 public class TriangleTests {
 
@@ -23,4 +23,4 @@ public class TriangleTests {
     int result = Triangle.AreaTriangle(3, 4, 5);
     Assertions.assertEquals(36, result);
     }
-} 
+}
