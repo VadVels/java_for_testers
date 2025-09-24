@@ -1,6 +1,4 @@
-package ru.solar.geometry;
-
-import ru.solar.triangleTest.Triangle;
+package ru.solar.triangleTest;
 
 public class Geometry {
     public static void main(String[] args) {
