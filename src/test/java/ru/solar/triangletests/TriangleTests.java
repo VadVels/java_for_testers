@@ -25,22 +25,20 @@ void canCalculatePerimeter() {
     }
 
 
-@Test
-void testTriangle(){
-    var side1 = (1);
-    var side2 = (2);
-    var side3 = (5);
-    Assertions.assertEquals (side1, side2, side3);
-   }
+    @Test
+    void testEqualSides(){
+        var side1 = new Triangle(2, 3, 5);
+        var side2 = new Triangle(2, 3, 5);
+        Assertions.assertEquals(side1,side2);
 
+    }
 
     @Test
-    void testPass(){
-        var side1 = new Triangle(1, 3, 5);
-        var side2 = new Triangle(2, 5, 5);
-        var side3 = new Triangle(3, 5, 5);
-        Assertions.assertFalse(side1. equals (side2));
-        Assertions.assertFalse (side1. equals (side3));
+    void testNotEqualsides(){
+        var side1 = new Triangle(2, 3, 4);
+        var side2 = new Triangle(4, 3, 2);
+        Assertions.assertTrue(side1. equals (side2));
+        Assertions.assertTrue(side2. equals (side1));
     }
 
 
