@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import ru.solar.triangleTest.Triangle;
 
-public class "TriangleTests" {
+public class TriangleTests {
 
 @Test
 void canCalculatePerimeter() {
@@ -23,14 +23,27 @@ void canCalculatePerimeter() {
     int result = Triangle.AreaTriangle(3, 4, 5);
     Assertions.assertEquals(36, result);
     }
-}
+
 
 @Test
 void testTriangle(){
     var side1 = (1);
     var side2 = (2);
     var side3 = (5);
-    short Object = 0;
     Assertions.assertEquals (side1, side2, side3);
    }
+
+
+    @Test
+    void testPass(){
+        var side1 = new Triangle(1, 3, 5);
+        var side2 = new Triangle(2, 5, 5);
+        var side3 = new Triangle(3, 5, 5);
+        Assertions.assertFalse(side1. equals (side2));
+        Assertions.assertFalse (side1. equals (side3));
+    }
+
+
+
+
 }

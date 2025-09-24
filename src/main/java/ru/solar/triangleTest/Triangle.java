@@ -1,16 +1,18 @@
 package ru.solar.triangleTest;
 
-public class Triangle {
+public record Triangle{
 
-    public int side1;
-    public int side2;
-    public int side3;
+    public static double side1;
+    public static double side2;
+    public static double side3;
 
-    public Triangle(int a, int b, int c){
+    public Triangle(double a, double b, double c){
         calculateTriangle(a, b, c);
     }
 
-    private void calculateTriangle(int a, int b, int c) {
+
+
+    private void calculateTriangle(double a, double b, double c) {
         this.side1 = a;
         this.side2 = b;
         this.side3 = c;
@@ -70,4 +72,7 @@ class TriangleException {
     public static void divide(int a, int b, int c) {
         var z = a + b + c;
     }
+
+
+
 }
