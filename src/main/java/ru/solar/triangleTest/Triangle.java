@@ -1,12 +1,11 @@
 package ru.solar.triangleTest;
 
-import java.util.Objects;
-
 public class Triangle {
 
     public double side1;
     public double side2;
     public double side3;
+
 
     public Triangle(double a, double b, double c) {
         calculateTriangle(a, b, c);
@@ -15,18 +14,23 @@ public class Triangle {
 
     private void calculateTriangle(double a, double b, double c) {
         this.side1 = a;
-        this.side2 = b;
+        this.side2 = a;
         this.side3 = c;
+
     }
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Triangle triangle = (Triangle) o;
-        return Double.compare(side1, this.side1) == 0 && Double.compare(side2, this.side2) == 0 && Double.compare(side3, this.side3) == 0
-                || Double.compare(side1,this.side2) == 0 && Double.compare(side1, this.side3) == 0
-                || Double.compare(side2,this.side1) == 0 && Double.compare(side2, this.side3) == 0
-                || Double.compare(side3,this.side1) == 0 && Double.compare(side3, this.side2) == 0;
+        return (Double.compare(side1, this.side1) == 0 && Double.compare(side2, this.side2) == 0 && Double.compare(side3, this.side3) == 0)
+                || (Double.compare(side2,this.side1) == 0 && Double.compare(side2, this.side2) == 0 && Double.compare(side2, this.side3) == 0);
+
+
+
+
+
     }
 
     @Override
