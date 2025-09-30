@@ -44,7 +44,15 @@ void canCalculatePerimeter() {
 
     }
 
-
+@Test
+    void TriangleNegative() {
+    try {
+        new Triangle(0, 2, 3);
+        Assertions.fail();
+    } catch (IllegalArgumentException exception) {
+        // ok
+    }
+}
 
 
 }

@@ -12,9 +12,9 @@ public class Triangle {
     }
 
 
-    private void calculateTriangle(double a, double b, double c) {
+    public void calculateTriangle(double a, double b, double c) {
         this.side1 = a;
-        this.side2 = a;
+        this.side2 = b;
         this.side3 = c;
 
     }
@@ -25,13 +25,17 @@ public class Triangle {
         if (o == null || getClass() != o.getClass()) return false;
         Triangle triangle = (Triangle) o;
         return (Double.compare(side1, this.side1) == 0 && Double.compare(side2, this.side2) == 0 && Double.compare(side3, this.side3) == 0)
-                || (Double.compare(side2,this.side1) == 0 && Double.compare(side2, this.side2) == 0 && Double.compare(side2, this.side3) == 0);
-
-
+                || (Double.compare(side1,this.side1) == 0 && Double.compare(side1, this.side2) == 0 && Double.compare(side1, this.side3) == 0)
+                || (Double.compare(side2,this.side1) == 0 && Double.compare(side2, this.side2) == 0 && Double.compare(side2, this.side3) == 0)
+                || (Double.compare(side3,this.side1) == 0 && Double.compare(side3, this.side2) == 0 && Double.compare(side3, this.side3) == 0);
 
 
 
     }
+
+
+
+
 
     @Override
     public int hashCode() {
