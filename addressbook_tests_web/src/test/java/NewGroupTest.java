@@ -17,7 +17,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.Keys;
 import java.util.*;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 public class NewGroupTest {
   private WebDriver driver;
   private Map<String, Object> vars;
@@ -35,31 +36,28 @@ public class NewGroupTest {
   @Test
   public void newGroup() {
     driver.get("http://localhost/addressbook/");
-    driver.manage().window().setSize(new Dimension(1492, 756));
+    driver.manage().window().setSize(new Dimension(1492, 757));
+    driver.findElement(By.name("user")).click();
+    driver.findElement(By.cssSelector("html")).click();
+    driver.findElement(By.name("pass")).click();
+    driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).sendKeys("admin");
+    driver.findElement(By.cssSelector("html")).click();
+    driver.findElement(By.name("pass")).click();
+    driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
     driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("new")).click();
-    driver.findElement(By.cssSelector("body")).click();
-    driver.findElement(By.cssSelector("form:nth-child(2)")).click();
-    driver.findElement(By.cssSelector("label:nth-child(1)")).click();
+    driver.findElement(By.name("group_name")).click();
+    driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).click();
     driver.findElement(By.name("group_name")).sendKeys("Group name");
     driver.findElement(By.name("group_header")).click();
-    driver.findElement(By.name("group_header")).click();
-    {
-      WebElement element = driver.findElement(By.name("group_header"));
-      Actions builder = new Actions(driver);
-      builder.doubleClick(element).perform();
-    }
-    driver.findElement(By.cssSelector("label:nth-child(4)")).click();
-    driver.findElement(By.name("group_header")).click();
     driver.findElement(By.name("group_header")).sendKeys("Group header");
-    driver.findElement(By.cssSelector("label:nth-child(7)")).click();
     driver.findElement(By.name("group_footer")).click();
     driver.findElement(By.name("group_footer")).sendKeys("Group footer");
     driver.findElement(By.name("submit")).click();
+    driver.findElement(By.linkText("group page")).click();
     driver.findElement(By.linkText("Logout")).click();
-    driver.findElement(By.name("user")).sendKeys("admin");
   }
 }

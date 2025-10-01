@@ -35,14 +35,17 @@ public class DeleteGroupTest {
   }
   @Test
   public void deleteGroup() {
-    driver.get("http://localhost/addressbook/group.php");
-    driver.manage().window().setSize(new Dimension(1492, 756));
+    driver.get("http://localhost/addressbook/");
+    driver.manage().window().setSize(new Dimension(1492, 824));
     driver.findElement(By.name("user")).sendKeys("admin");
+    driver.findElement(By.cssSelector("label:nth-child(4)")).click();
+    driver.findElement(By.name("pass")).click();
+    driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.xpath("//input[@value=\'Login\']")).click();
+    driver.findElement(By.linkText("groups")).click();
     driver.findElement(By.name("selected[]")).click();
     driver.findElement(By.name("delete")).click();
     driver.findElement(By.linkText("group page")).click();
     driver.findElement(By.linkText("Logout")).click();
-    driver.findElement(By.name("user")).sendKeys("admin");
   }
 }
