@@ -1,0 +1,15 @@
+package tests;
+
+import model.GroupData;
+import org.junit.jupiter.api.Test;
+
+public class GroupModificationTests extends TestBase {
+
+    @Test
+    void canModifyGroup(){
+        if (!app.groups().isGroupPresent()) {
+            app.groups().newGroup(new GroupData("group name", "group header", "group footer"));
+        }
+        app.groups().modifyGroups(new GroupData(). withName("modify name"));
+    }
+}

@@ -7,6 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.time.Duration;
+
+
 public class ApplicationManager {
     protected WebDriver driver;
 
@@ -25,6 +28,7 @@ public class ApplicationManager {
 
             }
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
             driver.get("http://localhost/addressbook/");
             driver.manage().window().setSize(new Dimension(1492, 757));
             driver.findElement(By.name("user")).click();
