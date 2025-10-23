@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class CreateContactBookTest {
@@ -11,7 +8,7 @@ public class CreateContactBookTest {
 
     @BeforeEach
     public void setUp() {
-        if (driver == null){
+        if (driver == null) {
             driver = new FirefoxDriver();
             Runtime.getRuntime().addShutdownHook(new Thread(driver::quit));
             driver.get("http://localhost/addressbook/");
@@ -27,7 +24,7 @@ public class CreateContactBookTest {
 
     @Test
     public void createContactBook() {
-        if (! isElementPresent(By.linkText("add new"))){
+        if (!isElementPresent(By.linkText("add new"))) {
             driver.findElement(By.name("Enter")).click();
         }
         driver.findElement(By.linkText("add new")).click();
@@ -93,8 +90,23 @@ public class CreateContactBookTest {
         driver.findElement(By.cssSelector("input:nth-child(75)")).click();
         driver.findElement(By.linkText("home page")).click();
     }
+
+    private boolean isElementPresent(By locator) {
+        try {
+            driver.findElement(locator);
+            return true;
+        } catch (NoSuchElementException exception) {
+            return false;
+        }
+
+    }
+
     @Test
     public void createContactBookWithEmty() {
+
+        if (!isElementPresent(By.linkText("add new"))) {
+            driver.findElement(By.name("Enter")).click();
+        }
         driver.findElement(By.linkText("add new")).click();
         driver.findElement(By.name("firstname")).click();
         driver.findElement(By.name("firstname")).sendKeys("");
