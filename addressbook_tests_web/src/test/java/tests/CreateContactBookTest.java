@@ -105,7 +105,7 @@ public class CreateContactBookTest {
     public void createContactBookWithEmty() {
 
         if (!isElementPresent(By.linkText("add new"))) {
-            driver.findElement(By.name("Enter")).click();
+            driver.findElement(By.name("submit")).click();
         }
         driver.findElement(By.linkText("add new")).click();
         driver.findElement(By.name("firstname")).click();
