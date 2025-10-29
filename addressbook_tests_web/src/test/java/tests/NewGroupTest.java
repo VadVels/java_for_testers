@@ -24,4 +24,20 @@ public class NewGroupTest extends TestBase {
     public void newGroupWithEmptyWithNameOnly() {
         app.groups().newGroup(new GroupData().withName("some name"));
     }
+
+
+    @Test
+    public void newMultipleGroup() {
+        int n = 5;
+        int groupCount = app.groups().getCount();
+        for (int i = 0; i < n; i++) {
+            app.groups().newGroup(new GroupData(randomString(i * 5), "Group header", "Group footer"));
+
+        }
+
+
+        int newgroupCount = app.groups().getCount();
+        Assertions.assertEquals(groupCount + n, newgroupCount);
+    }
+
 }
