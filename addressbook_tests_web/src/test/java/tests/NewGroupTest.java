@@ -3,41 +3,55 @@ package tests;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class NewGroupTest extends TestBase {
 
 
-    @Test
-    public void newGroup() {
+    public static List<GroupData> groupProvider() {
+        var result = new ArrayList<GroupData>();
+        for (var name : List.of("", "group name")) {
+            for (var header : List.of("", "group header")) {
+                for (var footer : List.of("", "group footer")) {
+                    result.add(new GroupData(name, header, footer));
+                }
+            }
+
+        }
+
+        for (int i = 0; i < 5; i++) {
+            result.add(new GroupData(randomString(i * 5), randomString(i * 5), randomString(i * 5)));
+        }
+        return result;
+    }
+
+
+    @ParameterizedTest
+    @MethodSource("groupProvider")
+    public void newMultipleGroup(GroupData group) {
         int groupCount = app.groups().getCount();
-        app.groups().newGroup(new GroupData("Group name", "Group header", "Group footer"));
+        app.groups().newGroup(group);
         int newgroupCount = app.groups().getCount();
         Assertions.assertEquals(groupCount + 1, newgroupCount);
     }
 
-    @Test
-    public void newGroupWithEmptyName() {
-        app.groups().newGroup(new GroupData());
-    }
-
-    @Test
-    public void newGroupWithEmptyWithNameOnly() {
-        app.groups().newGroup(new GroupData().withName("some name"));
+    public static List<GroupData> negativeGroupProvider() {
+        var result = new ArrayList<GroupData>(List.of(
+                new GroupData("group name'", "", "")));
+        return result;
     }
 
 
-    @Test
-    public void newMultipleGroup() {
-        int n = 5;
+    @ParameterizedTest
+    @MethodSource("negativeGroupProvider")
+    public void canNotNewGroup(GroupData group) {
         int groupCount = app.groups().getCount();
-        for (int i = 0; i < n; i++) {
-            app.groups().newGroup(new GroupData(randomString(i * 5), "Group header", "Group footer"));
-
-        }
-
-
+        app.groups().newGroup(group);
         int newgroupCount = app.groups().getCount();
-        Assertions.assertEquals(groupCount + n, newgroupCount);
+        Assertions.assertEquals(groupCount, newgroupCount);
     }
-
 }
