@@ -3,11 +3,7 @@ package manager;
 import model.GroupData;
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class GroupHelper extends HelperBase {
-
 
     public GroupHelper(ApplicationManager manager) {
         super(manager);
@@ -20,10 +16,10 @@ public class GroupHelper extends HelperBase {
     }
 
 
-    public void removeGroup(GroupData group) {
+    public void removeGroup() {
         openGroupsPage();
         groupsGroup();
-        selectGroup(group);
+        selectGroup();
         removeSelectedGroups();
         returnToGroupPage();
     }
@@ -39,7 +35,7 @@ public class GroupHelper extends HelperBase {
 
     public void modifyGroups(GroupData modifiedGroup) {
         openGroupsPage();
-        selectGroup(null);
+        selectGroup();
         initGroupModification();
         fillGroupForm(modifiedGroup);
         submitGroupModification();
@@ -76,9 +72,9 @@ public class GroupHelper extends HelperBase {
     }
 
     private void fillGroupForm(GroupData group) {
-        type(By.name("group_name"), group.name());
-        type(By.name("group_header"), group.header());
-        type(By.name("group_footer"), group.footer());
+        type(By.name("group_name"),group.name());
+        type(By.name("group_header"),group.header());
+        type(By.name("group_footer"),group.footer());
 
     }
 
@@ -88,8 +84,8 @@ public class GroupHelper extends HelperBase {
 
     }
 
-    private void selectGroup(GroupData group) {
-        click(By.cssSelector(String.format("input[value='%s']", group.id())));
+    private void selectGroup() {
+        click(By.name("selected[]"));
     }
 
     public int getCount() {
@@ -105,24 +101,8 @@ public class GroupHelper extends HelperBase {
 
     private void selectAllGroups() {
         var checkboxes = manager.driver.findElements(By.name("selected[]"));
-        for (var checkbox : checkboxes) {
+        for (var checkbox : checkboxes){
             checkbox.click();
         }
     }
-
-    public List<GroupData> getList() {
-        var groups = new ArrayList<GroupData>();
-        var spans = manager.driver.findElements(By.cssSelector("span.group"));
-        for (var span : spans) {
-            var name = span.getText();
-            var checkbox = span.findElement(By.name("selected[]"));
-            var id = checkbox.getAttribute("value");
-            groups.add(new GroupData().withId(id).withName(name));
-        }
-            return groups;
-
-
-
-    }
-
 }
