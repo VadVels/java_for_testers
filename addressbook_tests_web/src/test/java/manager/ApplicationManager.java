@@ -17,6 +17,8 @@ public class ApplicationManager {
 
     private GroupHelper groups;
 
+    private JdbcHelper jdbc;
+
     public void init(String browser) {
         if (driver == null) {
             if ("firefox".equals(browser)) {
@@ -53,6 +55,13 @@ public class ApplicationManager {
         return groups;
     }
 
+    public JdbcHelper jdbc() {
+        if (jdbc == null) {
+            jdbc = new JdbcHelper(this);
+        }
+        return jdbc;
+    }
+
     protected boolean isElementPresent(By locator) {
         try {
             driver.findElement(locator);
@@ -60,6 +69,7 @@ public class ApplicationManager {
         } catch (NoSuchElementException exception) {
             return false;
         }
+
 
     }
 

@@ -1,5 +1,6 @@
 package tests;
 
+import common.CommonFunctions;
 import model.GroupData;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -25,18 +26,25 @@ public class NewGroupTest extends TestBase {
 
         for (int i = 0; i < 5; i++) {
             result.add(new GroupData()
-                    .withName(randomString(i * 5))
-                    .withHeader(randomString(i * 5))
-                    .withFooter(randomString(i * 5)));
+                    .withName(CommonFunctions.randomString(i * 5))
+                    .withHeader(CommonFunctions.randomString(i * 5))
+                    .withFooter(CommonFunctions.randomString(i * 5)));
         }
         return result;
     }
 
+    public static List<GroupData> singleRandomGroup() {
+        return List.of(new GroupData()
+                .withName(CommonFunctions.randomString(10))
+                .withHeader(CommonFunctions.randomString(20))
+                .withFooter(CommonFunctions.randomString(30)));
+
+    }
 
     @ParameterizedTest
     @MethodSource("groupProvider")
     public void newMultipleGroup(GroupData group) {
-        var oldGroups = app.groups().getList();
+        var oldGroups = app.jdbc().getGroupList();
         app.groups().newGroup(group);
         var newGroups = app.groups().getList();
         Comparator<GroupData> compareById = (o1, o2) -> {
